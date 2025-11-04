@@ -16,3 +16,35 @@ def final(taulell_enfonsat):
                 return True
         x = ''
     return False
+
+
+def thereIsNoNumber(s):
+    """
+    aquesta funció retorna True si mínim un dels dos digits("a,4") és un digit ("qwertyuiopasdfghjklñzxcvbnm")
+    si les dos posicions son digits, retornarà True,pro si els dos son numeros returnarà false
+    """
+    if s[0] in "123456789" and s[2] in "qwertyuiopasdfghjklñzxcvbnm":
+        return True
+    elif s[0] in "qwertyuiopasdfghjklñzxcvbnm" and s[2] in  "qwertyuiopasdfghjklñzxcvbnm":
+        return True
+    elif s[0] in "qwertyuiopasdfghjklñzxcvbnm" and s[2] in "123456789":
+        return True
+    else:
+        return False
+
+
+def someBoxOccupied(b,x,y,o):
+    """
+    b = taulell
+    x:y posició que vols comprobar(de esquerra a dreta i de  dalt a baix)
+    o = vertical o horitzontal
+    retornar false si  algun lloc del taulell(x,y) en posició ques estigui vertical o 
+    horitzontal(depen de o) es pugui posar un vaixell de 3 pos. Si no es pot retornarà
+    True
+    """
+    if o == "H":
+        if b1[x,y] == "W":
+            if b1[x,y] + 1 == "W":
+                if b1[x,y] +2 == "W":
+                    return False    
+        elif o == "V"
