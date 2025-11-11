@@ -42,9 +42,18 @@ def someBoxOccupied(b,x,y,o):
     horitzontal(depen de o) es pugui posar un vaixell de 3 pos. Si no es pot retornarà
     True
     """
-    if o == "H":
-        if b1[x,y] == "W":
-            if b1[x,y] + 1 == "W":
-                if b1[x,y] +2 == "W":
-                    return False    
-        elif o == "V"
+    try:
+        b2 = b1[x]
+        if o == "H":
+            if b2[y] == "W":
+                if b2[y + 1] == "W":
+                    if b2[y + 2] == "W":
+                        return False   
+        elif o == "V":
+            b2 = b1[y]
+            if b2[x] == "W":
+                if b2[x + 1] == "W":
+                    if b2[x + 2] == "W":
+                        return  False
+    except:
+        return True
