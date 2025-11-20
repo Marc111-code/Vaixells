@@ -57,3 +57,18 @@ def someBoxOccupied(b,x,y,o):
                         return  False
     except:
         return True
+
+
+def applyPlay(taulell,shoot):
+    b = shoot.split(":")
+    if taulell[int(b[0])][int(b[1])] == 'X' or taulell[int(b[0])][int(b[1])] == 'O':
+        print("This box has already been played! You've missed a shot!")
+        return taulell
+    elif taulell[int(b[0])][int(b[1])] == 'S':
+        print("IMPACT!")
+        taulell[int(b[0])][int(b[1])] == 'O'
+        return taulell
+    elif taulell[int(b[0])][int(b[1])] == 'W':
+        print("WATER!")
+        taulell[int(b[0])][int(b[1])] == 'X'
+        return taulell
