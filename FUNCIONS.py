@@ -82,3 +82,24 @@ def wrongPosition(pos):
         return False
     else:
         return True
+
+
+
+def getOrientation():
+    result = input("Would you like to place the boat vertically or horizontally? (v / h) ")
+    while result not in "VvhH":
+        print("Sorry, this is not a valid option.")
+        result = input("Would you like to place the boat vertically or horizontally? (v / h) ")
+    return result.upper()
+
+
+
+
+def getPosition():
+'''
+fer'''
+    result = input("Initial box [row:column from 0 to 4]: ")
+    while wrongPosition(result) != "False":
+        print("Sorry, this is not a valid position.")
+        result = input("Initial box [row:column from 0 to 4]: ")  
+    return result
