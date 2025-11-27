@@ -72,3 +72,13 @@ def applyPlay(taulell,shoot):
         print("WATER!")
         taulell[int(b[0])][int(b[1])] == 'X'
         return taulell
+
+def wrongPosition(pos):
+    '''
+    mira si la posició donada és 1:2 o entre 1-5
+    '''
+    
+    if pos[0] in "12345" and pos[1] == ":" and pos[2] in "12345" and len(pos) <=3:
+        return False
+    else:
+        return True
