@@ -73,15 +73,6 @@ def applyPlay(taulell,shoot):
         taulell[int(b[0])][int(b[1])] == 'X'
         return taulell
 
-def wrongPosition(pos):
-    '''
-    mira si la posició donada és 1:2 o entre 1-5
-    '''
-    
-    if pos[0] in "12345" and pos[1] == ":" and pos[2] in "12345" and len(pos) <=3:
-        return False
-    else:
-        return True
 
 
 
@@ -95,11 +86,22 @@ def getOrientation():
 
 
 
+def wrongPosition(pos):
+    
+    a = pos.split(':')
+    
+    if ((int(a[0]) <= 4 and int(a[0]) >=0) and (int(a[1]) <= 4 and int(a[1]) >=0)):
+        return True
+    else:
+        return False
+
 def getPosition():
-'''
-fer'''
     result = input("Initial box [row:column from 0 to 4]: ")
-    while wrongPosition(result) != "False":
+    
+    while not wrongPosition(result):
         print("Sorry, this is not a valid position.")
         result = input("Initial box [row:column from 0 to 4]: ")  
+    
     return result
+
+print(getPosition())
