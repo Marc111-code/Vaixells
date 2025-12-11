@@ -100,8 +100,70 @@ def getPosition():
     
     while not wrongPosition(result):
         print("Sorry, this is not a valid position.")
-        result = input("Initial box [row:column from 0 to 4]: ")  
-    
+        result = input("Initial box [row:column from 0 to 4]: ")
     return result
 
 print(getPosition())
+
+
+
+
+
+
+
+s'ha de fer
+
+
+
+def someBoxOccupied(b,x,y,o):
+    """
+    b = taulell
+    x:y posició que vols comprobar(de esquerra a dreta i de  dalt a baix)
+    o = vertical o horitzontal
+    retornar false si  algun lloc del taulell(x,y) en posició ques estigui vertical o 
+    horitzontal(depen de o) es pugui posar un vaixell de 3 pos. Si no es pot retornarà
+    True
+    """
+    try:
+        b2 = b1[x]
+        if o == "H":
+            if b2[y] == "W":
+                if b2[y + 1] == "W":
+                    if b2[y + 2] == "W":
+                        return False   
+        elif o == "V":
+            b2 = b1[y]
+            if b2[x] == "W":
+                if b2[x + 1] == "W":
+                    if b2[x + 2] == "W":
+                        return  False
+    except:
+        return True
+
+def wrongPosition(pos):
+    
+    a = pos.split(':')
+    
+    if ((int(a[0]) <= 4 and int(a[0]) >=0) and (int(a[1]) <= 4 and int(a[1]) >=0)):
+        return True
+    else:
+        return False
+def placeShip3(taulell,i):
+    print("Reading the 3 positions ship number " + str(i))
+    result1 = input("Initial box [row:column from 0 to 4]: ")
+    while not wrongPosition(result1):
+        print("Would you like to place the boat vertically or horizontally? (v / h) ")
+        result1 = input("Initial box [row:column from 0 to 4]: ")
+    b = result1.split(":")  
+    result2 = input("Would you like to place the boat vertically or horizontally? (v / h) ")
+    while result2 not in "VvhH":
+        print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again")
+        result2 = input("Would you like to place the boat vertically or horizontally? (v / h) ")
+        
+    if someBoxOccupied(taulell,b[0],b[1],result2) == False:
+        taulell[int(b[0])][int(b[1])] = 'S'
+        return taulell
+    else:
+        print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again")
+
+print(placeShip3([["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",]],1))
