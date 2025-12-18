@@ -112,8 +112,7 @@ print(getPosition())
 
 
 s'ha de fer
-
-
+s'ha de arreglar per fer wl while
 
 def someBoxOccupied(b,x,y,o):
     """
@@ -125,18 +124,18 @@ def someBoxOccupied(b,x,y,o):
     True
     """
     try:
-        b2 = b1[x]
+       
+        
         if o == "H":
-            if b2[y] == "W":
-                if b2[y + 1] == "W":
-                    if b2[y + 2] == "W":
-                        return False   
+            print(b[x][y], b[x][y+1], b[x][y+2])
+            if b[x][y+1] == "W" and b[x][y+2] == "W":
+                
+                return False
+                
         elif o == "V":
-            b2 = b1[y]
-            if b2[x] == "W":
-                if b2[x + 1] == "W":
-                    if b2[x + 2] == "W":
-                        return  False
+             if b[x+1][y] == "W" and b[x+2][y] == "W":
+               
+                return False
     except:
         return True
 
@@ -149,21 +148,34 @@ def wrongPosition(pos):
     else:
         return False
 def placeShip3(taulell,i):
+    variable =False
     print("Reading the 3 positions ship number " + str(i))
     result1 = input("Initial box [row:column from 0 to 4]: ")
-    while not wrongPosition(result1):
-        print("Would you like to place the boat vertically or horizontally? (v / h) ")
-        result1 = input("Initial box [row:column from 0 to 4]: ")
-    b = result1.split(":")  
-    result2 = input("Would you like to place the boat vertically or horizontally? (v / h) ")
-    while result2 not in "VvhH":
-        print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again")
+    while variable != True:
+        while not wrongPosition(result1):
+            print("Would you like to place the boat vertically or horizontally? (v / h) ")
+            result1 = input("Initial box [row:column from 0 to 4]: ")
+        z = result1.split(":")  
         result2 = input("Would you like to place the boat vertically or horizontally? (v / h) ")
+        while result2 not in "VvhH":
+            print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again")
+            result2 = input("Would you like to place the boat vertically or horizontally? (v / h) ")        
         
-    if someBoxOccupied(taulell,b[0],b[1],result2) == False:
-        taulell[int(b[0])][int(b[1])] = 'S'
-        return taulell
-    else:
-        print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again")
-
-print(placeShip3([["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",]],1))
+        if someBoxOccupied(taulell,z[0],z[1],result2) == True:
+            if result2 in "vV":
+                taulell[int(z[0])][int(z[1])] = 'S' 
+                taulell[int(z[0])+1][int(z[1])] = 'S' 
+                taulell[int(z[0])+2][int(z[1])] = 'S' 
+                print(taulell)
+                variable = True
+            elif result2 in "hH":
+                taulell[int(z[0])][int(z[1])] = 'S' 
+                taulell[int(z[0])][int(z[1])+1] = 'S' 
+                taulell[int(z[0])][int(z[1])+2] = 'S'        
+                print(taulell)
+                variable = True                
+        else:
+            variable= False
+            print(someBoxOccupied(taulell,z[0],z[1],result2))
+            print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again")
+placeShip3([["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",]],1)
