@@ -108,74 +108,38 @@ print(getPosition())
 
 
 
-
-
-
-s'ha de fer
-s'ha de arreglar per fer wl while
-
-def someBoxOccupied(b,x,y,o):
-    """
-    b = taulell
-    x:y posició que vols comprobar(de esquerra a dreta i de  dalt a baix)
-    o = vertical o horitzontal
-    retornar false si  algun lloc del taulell(x,y) en posició ques estigui vertical o 
-    horitzontal(depen de o) es pugui posar un vaixell de 3 pos. Si no es pot retornarà
-    True
-    """
-    try:
-       
+def placeShip3(tauler, i):
+    colocat = False
+    while not colocat:
+        print(f"Reading the 3 positions ship number {i}")
+        entrada = input("Initial box [row:column from 0 to 4]: ")
+        fila = int(entrada.split(':')[0])
+        columna = int(entrada.split(':')[1])
+        orientacio =input("Would you like to place the boat vertically or horizontally? (v / h): ")
+        if orientacio == 'v':
+            if fila >= 0 and fila <= 2 and columna >= 0 and columna <= 4:
+                if tauler[fila][columna] == 'W' and tauler[fila+1][columna] == 'W' and tauler[fila+2][columna] == 'W':
+                    tauler[fila][columna] = 'S'
+                    tauler[fila+1][columna] = 'S'
+                    tauler[fila+2][columna] = 'S'
+                    colocat = True
+                else:
+                    print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again!")
+            else:
+                print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again!")
         
-        if o == "H":
-            print(b[x][y], b[x][y+1], b[x][y+2])
-            if b[x][y+1] == "W" and b[x][y+2] == "W":
-                
-                return False
-                
-        elif o == "V":
-             if b[x+1][y] == "W" and b[x+2][y] == "W":
-               
-                return False
-    except:
-        return True
-
-def wrongPosition(pos):
-    
-    a = pos.split(':')
-    
-    if ((int(a[0]) <= 4 and int(a[0]) >=0) and (int(a[1]) <= 4 and int(a[1]) >=0)):
-        return True
-    else:
-        return False
-def placeShip3(taulell,i):
-    variable =False
-    print("Reading the 3 positions ship number " + str(i))
-    result1 = input("Initial box [row:column from 0 to 4]: ")
-    while variable != True:
-        while not wrongPosition(result1):
-            print("Would you like to place the boat vertically or horizontally? (v / h) ")
-            result1 = input("Initial box [row:column from 0 to 4]: ")
-        z = result1.split(":")  
-        result2 = input("Would you like to place the boat vertically or horizontally? (v / h) ")
-        while result2 not in "VvhH":
-            print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again")
-            result2 = input("Would you like to place the boat vertically or horizontally? (v / h) ")        
-        
-        if someBoxOccupied(taulell,z[0],z[1],result2) == True:
-            if result2 in "vV":
-                taulell[int(z[0])][int(z[1])] = 'S' 
-                taulell[int(z[0])+1][int(z[1])] = 'S' 
-                taulell[int(z[0])+2][int(z[1])] = 'S' 
-                print(taulell)
-                variable = True
-            elif result2 in "hH":
-                taulell[int(z[0])][int(z[1])] = 'S' 
-                taulell[int(z[0])][int(z[1])+1] = 'S' 
-                taulell[int(z[0])][int(z[1])+2] = 'S'        
-                print(taulell)
-                variable = True                
+        elif orientacio == 'h':
+            if fila >= 0 and fila <= 4 and columna >= 0 and columna <= 2:
+                if tauler[fila][columna] == 'W' and tauler[fila][columna+1] == 'W' and tauler[fila][columna+2] == 'W':
+                    tauler[fila][columna] = 'S'
+                    tauler[fila][columna+1] = 'S'
+                    tauler[fila][columna+2] = 'S'
+                    colocat = True
+                else:
+                    print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again!")
+            else:
+                print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again!")
         else:
-            variable= False
-            print(someBoxOccupied(taulell,z[0],z[1],result2))
-            print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again")
-placeShip3([["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",],["W","W","W","W","W",]],1)
+            print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again!")
+    
+    return tauler
