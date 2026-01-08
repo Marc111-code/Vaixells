@@ -143,3 +143,20 @@ def placeShip3(tauler, i):
             print("Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again!")
     
     return tauler
+
+
+def placeShip(tauler):
+    placeShip3(tauler,1)
+    placeShip3(tauler,2)
+    print(placeShip3(tauler,3))
+
+
+def game():
+    jugadorA = startBoard()
+    jugadorB = startBoard()
+    print("Jugador A. On vols posar els vaixells?")
+    placeShip(jugadorA)
+    print("Jugador B. On vols posar els vaixells?")
+    placeShip(jugadorB)
+    print("Jugador A")
+    respostA1=input("A quina posició del taulell del jugador B creus que hi ha un vaixell")
